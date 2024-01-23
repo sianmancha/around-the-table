@@ -1,4 +1,4 @@
-import RegisterForm from "@/components/RegisterForm";
+import CreateAccountModal from "@/components/CreateAccountModal";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import authOptions  from "@/lib/authOptions";
@@ -11,6 +11,6 @@ export default async function Register() {
     }
     
     return (
-        <RegisterForm />
+        <CreateAccountModal  />
     )
 }

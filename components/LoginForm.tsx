@@ -66,7 +66,7 @@ export default function LoginForm() {
                         {errors.password && touched.password ? (
                             <div className="text-[#c32f27]">{errors.password}</div>
                         ) : null}
-                        <button className="bg-[#a4af69] disabled:bg-opacity-30 text-[#FAF9F6] disabled:text-[#968E5A]/30 font-bold cursor-pointer px-6 py-2 rounded-full" disabled={!isValid || !dirty} type='submit'>
+                        <button className="bg-[#968E5A] disabled:bg-opacity-30 text-[#FAF9F6] disabled:text-[#968E5A]/30 font-semibold cursor-pointer px-6 py-2 rounded-full" disabled={!isValid || !dirty} type='submit'>
                             Sign In
                         </button>
                         <Link className="text-sm mt-3 text-right text-[#772604]" href={'/register'}>
