@@ -1,8 +1,6 @@
 'use client'
 
-import Link from "next/link";
 import React from "react";
-import { useRouter } from "next/navigation";
 import { Formik, Form, Field } from "formik";
 import * as Yup from 'yup'
 
@@ -25,7 +23,6 @@ const SignUpSchema = Yup.object().shape({
 })
 
 export default function CreateAccountForm({onClose, onRegistrationError}: Props) {
-    const router = useRouter();
 
     const handleCreateAccount = async (values: Values) => {
         try {
@@ -42,7 +39,7 @@ export default function CreateAccountForm({onClose, onRegistrationError}: Props)
             });
 
             if (res.ok) {
-                router.push("/")
+                onClose()
             } else {
                 const data = await res.json();
                 onRegistrationError(data.message)
