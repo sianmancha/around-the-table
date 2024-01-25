@@ -2,13 +2,10 @@
 
 import React, { useState } from "react";
 import CreateAccountForm from "./CreateAccountForm";
-import Link from "next/link";
 
 export default function CreateAccountModal() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [registrationError, setRegistrationError] = useState('')
-
-    const currentPath = window.location.pathname;
 
     function openModal() {
         setIsModalOpen(true)
@@ -38,11 +35,10 @@ export default function CreateAccountModal() {
                         {registrationError && (
                             <div className="text-[#C32F27] text-balance text-center mb-4 bg-[#c32f27]/10 p-2 rounded-lg">
                                 {registrationError} Please{' '}
-                                {currentPath !== '/' ? (
-                                    <Link className="underline font-semibold text-[#C32F27]" href="/login">sign in</Link>
-                                ) : (
-                                    <button className="underline font-semibold text-[#C32F27] cursor-pointer" onClick={closeModal}>sign in</button>
-                                )}{' '}
+                                <button className="underline font-semibold text-[#C32F27] cursor-pointer" onClick={closeModal}>
+                                    sign in
+                                </button>
+                                {' '}
                                 or try again with a different email.
                             </div>
                         )}

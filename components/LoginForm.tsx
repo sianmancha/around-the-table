@@ -1,6 +1,6 @@
 'use client'
 
-import React from "react";
+import React, { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Formik, Form, Field } from "formik";
@@ -18,26 +18,38 @@ const LoginSchema = Yup.object().shape({
 }); 
 
 export default function LoginForm() {
+    const [loginError, setLoginError] = useState('');
+    
     const router = useRouter();
 
     async function handleLogin(values: Values) {
         try {
-            await signIn('credentials', {
+            const res = await signIn('credentials', {
                email: values.email, 
                password: values.password, 
                redirect: false 
             })
+            
+            if(res?.ok) {
+                router.replace('dashboard')
+            } else {
+                setLoginError('Invalid email or password. Please try again or create a new account.')
+            }
 
-            router.replace('dashboard')
 
         } catch (error) {
-            console.log(error)
-        }
+                console.error('Error occurred during login:', error);
+            }
     }
 
     return (
         <div className="grid place-items-center h-screen">
             <div className="shadow-lg p-5 rounded-lg border-t-4 border-[#D4AC97] bg-[#F9F6EE] w-9/12 lg:max-w-[450px] mx-4">
+                {loginError && (
+                    <div className="text-[#C32F27] text-balance text-center mb-4 bg-[#c32f27]/10 p-2 rounded-lg">
+                        {loginError}
+                    </div>
+                )}
                 <h1 className="text-xl font-bold my-4 text-[#772604]">
                     Login
                 </h1>

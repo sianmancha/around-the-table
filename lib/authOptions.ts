@@ -1,5 +1,3 @@
-// authOptions.ts
-import { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { connectMongoDB } from "@/lib/mongodb";
 import User from "@/models/user";
@@ -16,6 +14,7 @@ const authOptions = {
     CredentialsProvider({
       name: "credentials",
       credentials: {},
+
       async authorize(credentials) {
         const { email, password } = credentials as Credentials;
         try {
