@@ -1,7 +1,7 @@
 'use client'
 
 import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
 import { useRouter } from "next/navigation";
 import { Formik, Form, Field } from "formik";
 import * as Yup from 'yup'
@@ -14,6 +14,7 @@ interface Values {
 
 interface Props {
     onClose: () => void
+    onRegistrationError: (error: string) => void;
 }
 
 const SignUpSchema = Yup.object().shape({
@@ -23,7 +24,7 @@ const SignUpSchema = Yup.object().shape({
     confirmPassword: Yup.string().oneOf([Yup.ref('password')], 'Passwords must match').required('Please confirm your password.') 
 })
 
-export default function CreateAccountForm({onClose}: Props) {
+export default function CreateAccountForm({onClose, onRegistrationError}: Props) {
     const router = useRouter();
 
     const handleCreateAccount = async (values: Values) => {
@@ -43,10 +44,11 @@ export default function CreateAccountForm({onClose}: Props) {
             if (res.ok) {
                 router.push("/")
             } else {
-                console.log("User registration failed.")
-            }
+                const data = await res.json();
+                onRegistrationError(data.message)
+                }
         } catch (error) {
-            console.log("Error during registration: ", error)
+            onRegistrationError("An error occured while creating your account.")
         }
     }
 

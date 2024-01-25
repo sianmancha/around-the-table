@@ -1,11 +1,11 @@
 'use client'
 
-import Link from "next/link";
 import React from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Formik, Form, Field } from "formik";
 import * as Yup from 'yup'
+import CreateAccountModal from "./CreateAccountModal";
 
 interface Values {
     email: string;
@@ -69,12 +69,13 @@ export default function LoginForm() {
                         <button className="bg-[#968E5A] disabled:bg-opacity-30 text-[#FAF9F6] disabled:text-[#968E5A]/30 font-semibold cursor-pointer px-6 py-2 rounded-full" disabled={!isValid || !dirty} type='submit'>
                             Sign In
                         </button>
-                        <Link className="text-sm mt-3 text-right text-[#772604]" href={'/register'}>
-                            Don’t have an account? <span className="underline">Sign Up</span>
-                        </Link>
                     </Form>
                     )}
                 </Formik>
+                <div className="flex flex-col items-center gap-3 mt-4 text-[#772604]">
+                    Don’t have an account?
+                    <CreateAccountModal />
+                </div>
             </div>
         </div>
     )
