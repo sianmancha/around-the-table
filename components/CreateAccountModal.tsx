@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import CreateAccountForm from "./CreateAccountForm";
+import cancelIcon from '../app/cancel.svg';
+import Image from "next/image";
 
 export default function CreateAccountModal() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,7 +32,9 @@ export default function CreateAccountModal() {
                     <div className="shadow-lg p-5 rounded-lg border-t-4 border-[#D4AC97] bg-[#F9F6EE] w-9/12 lg:max-w-[450px] mx-4">
                         <div className="flex items-start justify-between text-[#772604]">
                             <h1 className="text-xl font-bold my-4">Create An Account</h1>
-                            <button className="text-xl font-semibold" onClick={closeModal}>X</button>
+                            <button className="text-xl font-semibold text-[#772604]" onClick={closeModal}>
+                                <Image alt="Cancel" src={cancelIcon} width={30} height={30} />
+                            </button>
                         </div>
                         {registrationError && (
                             <div className="text-[#C32F27] text-balance text-center mb-4 bg-[#c32f27]/10 p-2 rounded-lg">
