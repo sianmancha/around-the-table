@@ -29,7 +29,6 @@ const SignUpSchema = Yup.object().shape({
 export default function CreateAccountForm({onClose, onRegistrationError}: Props) {
 
     const handleCreateAccount = async (values: Values) => {
-        let toastId: string | undefined
         try {
             const res = await fetch('api/register', {
                 method: "POST",
@@ -45,7 +44,7 @@ export default function CreateAccountForm({onClose, onRegistrationError}: Props)
 
             if (res.ok) {
                 onClose()
-                toastId = toast.custom(
+                toast.custom(
                     <div className="flex items-center gap-4 bg-[#968E5A] text-[#FAF9F6] text-center py-4 px-6 rounded-md">
                         <Image alt='Account successfuly created!' src={accountCreationIcon} width={30} height={10} />
                         Account successfully created! Please sign in. 
