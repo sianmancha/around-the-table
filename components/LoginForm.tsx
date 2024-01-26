@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Formik, Form, Field } from "formik";
 import * as Yup from 'yup'
 import CreateAccountModal from "./CreateAccountModal";
+import Link from "next/link";
 
 interface Values {
     email: string;
@@ -87,6 +88,9 @@ export default function LoginForm() {
                 <div className="flex flex-col items-center gap-3 mt-4 text-[#772604]">
                     Don’t have an account?
                     <CreateAccountModal />
+                </div>
+                <div className="mt-4 flex justify-end">
+                    <Link className="underline text-[#772604]" href='/forgot-password'>Forgot Password?</Link>
                 </div>
             </div>
         </div>
