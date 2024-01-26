@@ -1,10 +1,8 @@
 'use client'
 
 import { Formik, Form, Field  } from "formik";
-import { validateHeaderName } from "http";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { toast } from "react-hot-toast";
 import * as Yup from 'yup';
 
 interface Values {
@@ -31,7 +29,9 @@ export default function ForgotPassword() {
             });
 
             if(res.ok) {
-                router.push('/password-reset');
+                const { resetToken } = await res.json();
+                router.push(`/reset-password?email=${values.email}&resetToken=${resetToken}`);
+
             } else {
                 const data = await res.json();
                 setResetError(data.message)

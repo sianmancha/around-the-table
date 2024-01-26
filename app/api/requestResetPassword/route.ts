@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
             { resetPasswordToken: resetToken, resetPasswordExpires: expirationTime }
         );
 
-        return NextResponse.json({ message: 'Password Reset Initiated' }, { status: 200 })
+        return NextResponse.json({ message: 'Password Reset Initiated', resetToken }, { status: 200 })
     } catch (error) {
         return NextResponse.json({ message: "An error occurred while processing the request: ", error }, { status: 500 }); 
     }
