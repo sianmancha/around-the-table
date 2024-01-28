@@ -6,6 +6,10 @@
   background-color: #FAF9F6;
 }
 
-input {
+input, textarea {
   @apply w-full p-4 rounded-lg font-medium border border-[#D4AC97] placeholder-[#654236] placeholder-opacity-80 text-sm text-[#772604] focus:outline-none focus:border-[#e36414]
+}
+
+select {
+  @apply w-full p-4 rounded-lg font-medium border border-[#D4AC97] text-sm focus:outline-none focus:border-[#e36414]
 }

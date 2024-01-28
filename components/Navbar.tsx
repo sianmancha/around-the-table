@@ -3,6 +3,7 @@
 import diningTable from '../app/dining-table.svg'
 import Image from 'next/image'
 import { signOut, useSession } from 'next-auth/react'
+import Link from 'next/link';
 
 
 export default function NavBar() {
@@ -20,9 +21,9 @@ export default function NavBar() {
                     <h1 className='text-4xl text-[#FAF9F6] ml-auto'>
                         Around the Table
                     </h1>
-                    <div className='text-[#FAF9F6] ml-auto'>
-                        Signed Out
-                    </div>
+                    <Link className='text-[#FAF9F6] ml-auto underline' href={'/contact'}>
+                        Need Help? Contact Us
+                    </Link>
                 </div>
             )}
         </div>
